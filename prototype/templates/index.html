@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Are You Feeling?</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <script src='static/script.js'></script>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+</style>
+
+</head>
+<body>
+<div class='register_form'>
+    <form action='{{url_for("register")}}' method='POST'>
+    username: <input type="text" name="username" class='field' required><br>
+    email: <input type="email" name="email" class='field' required><br>
+    password: <input type="text" name="password" class='field' required> <br>
+    confirm password: <input type="text" name="confirm_password" class='field' required> <br>
+    <button type="submit" class="submit-btn">submit</button>
+    </form>
+</div>
+
+<div class='login_form'>
+    <form action='{{url_for("login")}}' method='POST'>
+    email: <input type="email" name="email" class='field' required><br>
+    password: <input type="text" name="password" class='field' required> <br>
+    <br>
+    <button type="submit" class="submit-btn">submit</button>
+</form>
+</div>
+<div>
+<div class="Navbar">
+      
+    <div class="Navbar__Link Navbar__Link-toggle">
+      <a class='toggle' onclick='classToggle()'>✝</a>
+    </div>
+    <p>{{date}}</p>
+  <nav class="Navbar__Items">
+    <div class="Navbar__Link">
+      <a class='link' href="{{url_for('login')}}">Login</a>
+    </div>
+    <div class="Navbar__Link">
+      Sign up
+    </div>
+    <div class="Navbar__Link">
+      View Journal
+    </div>
+    <div class="Navbar__Link link">
+      <a class='link' onclick='showVerses()'>Extra verses</a>
+    </div>
+    <div class="Navbar__Link">
+      <a class='link' href="{{url_for('copyright')}}">Copyright</a>
+    </div>
+  </nav>
+  
+</div>
+<br>
+    <div class="container">
+
+        <h1>How are you feeling today?</h1>
+        <a href='{{url_for("sad")}}' class="feeling">sad</a><br>
+        <a href='{{url_for("worried")}}' name = 'feeling' class="feeling">worried/anxious</a><br>
+        <a href='{{url_for("stressed")}}' name = 'feeling' class="feeling">stressed/troubled</a><br>
+        <a href='{{url_for("fearful")}}' name = 'feeling' class="feeling">fearful/afraid</a><br>
+        <a href='{{url_for("angry")}}' name = 'feeling' class="feeling">angry</a><br>
+        <a href='#' name = 'feeling' class="feeling">bitter/resentful</a><br>
+        <a href='#' name = 'feeling' class="feeling">inadequate/weak</a><br>
+        <a href='#' name = 'feeling' class="feeling">lost/hopeless</a><br>
+        <a href='#' name = 'feeling' class="feeling">overwhelmed</a><br>
+        <a href='#' name = 'feeling' class="feeling">envy</a><br>
+        <a href='#' name = 'feeling' class="feeling">grief</a><br>
+        <br>
+        <br>
+        <div class='extra'>
+            <p>get a random verse about:</p>
+            <a href="{{url_for('search', feel='love')}}" id='feeling'>love</a>
+            <a href="{{url_for('search', feel='patience')}}" id='feeling'>patience</a>
+            <a href="{{url_for('search', feel='kindness')}}" id='feeling'>kindness</a>
+            <a href="{{url_for('search', feel='understanding')}}" id='feeling'>understanding</a>
+            <a href="{{url_for('search', feel='trust')}}" id='feeling'>trust</a>
+            <a href="{{url_for('search', feel='faith')}}" id='feeling'>faith</a>
+        </div>
+        <form action="{{url_for('search')}}" method='GET'>
+            <input type="text" class="input-box" name='feel' placeholder="search other verses" required>
+            <br>
+            <button type="submit" class="submit-btn">Go</button>
+        </form>
+        <div>
+        <p class='copyright'>©ESV Bible</p>
+    </div>
+    </div>
+    <div class='functions'>
+
+        
+    </div>
+</div>
+
+</body>
+</html>
