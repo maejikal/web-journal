@@ -1,5 +1,6 @@
 # web-journal
 a lightweight, minimalist web journal for daily devotions powered by the ESV API.
+see wiki for the project roadmap
 
 <h2>generate verses based on emotion</h2>
 <h3>get a random verse</h3>
