@@ -12,68 +12,116 @@
 
 </head>
 <body>
-<div class='register_form'>
-    <form action='{{url_for("register")}}' method='POST'>
-    username: <input type="text" name="username" class='field' required><br>
-    email: <input type="email" name="email" class='field' required><br>
-    password: <input type="text" name="password" class='field' required> <br>
-    confirm password: <input type="text" name="confirm_password" class='field' required> <br>
-    <button type="submit" class="submit-btn">submit</button>
-    </form>
-</div>
-
-<div class='login_form'>
-    <form action='{{url_for("login")}}' method='POST'>
-    email: <input type="email" name="email" class='field' required><br>
-    password: <input type="text" name="password" class='field' required> <br>
-    <br>
-    <button type="submit" class="submit-btn">submit</button>
-</form>
-</div>
-<div>
+    <div>
 <div class="Navbar">
-      
+    <p style="position:fixed;top:5px;">{{date}}</p>
     <div class="Navbar__Link Navbar__Link-toggle">
+
       <a class='toggle' onclick='classToggle()'>✝</a>
-    </div>
-    <p>{{date}}</p>
   <nav class="Navbar__Items">
+
     <div class="Navbar__Link">
-      <a class='link' href="{{url_for('login')}}">Login</a>
+        {% if "logged_in" in session %}
+            <a class='link' href="{{url_for('logout')}}">Logout</a>
+        {% else %}
+            <a class='link' href="{{url_for('login')}}">Login</a>
+        {% endif %}
     </div>
     <div class="Navbar__Link">
-      Sign up
+        {% if "logged_in" in session %}
+        <a class='link' href="{{url_for('dashboard')}}">Account</a>
+        {% else %}
+      <a class='link' href="{{url_for('registerform')}}">Sign up</a>
+      {% endif %}
     </div>
     <div class="Navbar__Link">
-      View Journal
+        {% if "logged_in" in session %}
+        <a class='link' href="{{url_for('journal')}}">Journal</a>
+        {% else %}
+      {% endif %}
     </div>
-    <div class="Navbar__Link link">
-      <a class='link' onclick='showVerses()'>Extra verses</a>
+    <div class="Navbar__Link">
+        {% if "logged_in" in session %}
+        <a class='link' href="{{url_for('saved_verses')}}">Saved verses</a>
+        {% else %}
+      {% endif %}
+    </div>
+    <div class="Navbar__Link">
+      <a class='link' onclick='showVerses()'>Toggle extra</a>
+    </div>
+    <!-- <div class="Navbar__Link">
+      <a class='link' onclick="switchMode()">Light mode</a>
+        
+    </div> -->
+    <div class="Navbar__Link">
+      <a class='link' href="{{url_for('about')}}">About</a>
     </div>
     <div class="Navbar__Link">
       <a class='link' href="{{url_for('copyright')}}">Copyright</a>
     </div>
-  </nav>
-  
+    </nav>
+    </div>
 </div>
 <br>
     <div class="container">
-
         <h1>How are you feeling today?</h1>
+        <div class='side-div'>
+        <div class='func-div'>
+        <a href='{{url_for("sad")}}' class="feeling">happy</a><br>
+        <a href='{{url_for("worried")}}' name = 'feeling' class="feeling">excited</a><br>
+        <a href='{{url_for("stressed")}}' name = 'feeling' class="feeling">calm</a><br>
+        <a href='{{url_for("fearful")}}' name = 'feeling' class="feeling">relieved</a><br>
+        <a href='{{url_for("angry")}}' name = 'feeling' class="feeling">satisfied</a><br>
+        <a href='#' name = 'feeling' class="feeling">joyful</a><br>
+        <a href='#' name = 'feeling' class="feeling">hopeful</a><br>
+        <a href='#' name = 'feeling' class="feeling">proud</a><br>
+        <a href='#' name = 'feeling' class="feeling">loved</a><br>
+        <a href='#' name = 'feeling' class="feeling">ecstatic</a><br>
+        <a href='#' name = 'feeling' class="feeling">amazed</a><br>
+        <br>
+        
+        <br>
+        
+        </div>
+        <div class='func-div'>
         <a href='{{url_for("sad")}}' class="feeling">sad</a><br>
         <a href='{{url_for("worried")}}' name = 'feeling' class="feeling">worried/anxious</a><br>
         <a href='{{url_for("stressed")}}' name = 'feeling' class="feeling">stressed/troubled</a><br>
         <a href='{{url_for("fearful")}}' name = 'feeling' class="feeling">fearful/afraid</a><br>
         <a href='{{url_for("angry")}}' name = 'feeling' class="feeling">angry</a><br>
-        <a href='#' name = 'feeling' class="feeling">bitter/resentful</a><br>
-        <a href='#' name = 'feeling' class="feeling">inadequate/weak</a><br>
-        <a href='#' name = 'feeling' class="feeling">lost/hopeless</a><br>
-        <a href='#' name = 'feeling' class="feeling">overwhelmed</a><br>
-        <a href='#' name = 'feeling' class="feeling">envy</a><br>
-        <a href='#' name = 'feeling' class="feeling">grief</a><br>
+        <a href='{{url_for("bitter")}}' name = 'feeling' class="feeling">bitter/resentful</a><br>
+        <a href='{{url_for("weak")}}' name = 'feeling' class="feeling">inadequate/weak</a><br>
+        <a href='{{url_for("lost")}}' name = 'feeling' class="feeling">lost/hopeless</a><br>
+        <a href='{{url_for("overwhelmed")}}' name = 'feeling' class="feeling">overwhelmed</a><br>
+        <a href='{{url_for("envious")}}' name = 'feeling' class="feeling">envious</a><br>
+        <a href='{{url_for("grieved")}}' name = 'feeling' class="feeling">grieved</a><br>
+        
         <br>
         <br>
-        <div class='extra'>
+        </div>
+        </div>
+
+        
+        <a onclick="showSave()" id='func' class="feeling" style='color:lightgoldenrodyellow;'>add own verse</a><br>
+
+        <div id='save_form'>
+            <form action='{{url_for("add_verse")}}' method='POST'>
+            <p>ref: <input type="text" class="input-box" name='ref' placeholder="Matthew 16:24" required> <br></p>
+            <p>feel: <input type="text" class="input-box" name='feel' placeholder="convicted"> <br></p>
+            <p>note: <input type="text" class="input-box" name='note' placeholder="enter note/thoughts..."></p>
+            
+            <button type="submit" class="submit-btn" id='func'>save</button>
+        </form>
+        
+        </div>
+        <br>
+        <form action="{{url_for('search')}}" method='GET'>
+            <input style='text-align: center;'type="text" class="input-box" name='feel' placeholder="search other verses" required>
+            <br>
+            <button type="submit" class="submit-btn">Go</button>
+        </form>
+        
+        <div id='extra'>
             <p>get a random verse about:</p>
             <a href="{{url_for('search', feel='love')}}" id='feeling'>love</a>
             <a href="{{url_for('search', feel='patience')}}" id='feeling'>patience</a>
@@ -81,21 +129,18 @@
             <a href="{{url_for('search', feel='understanding')}}" id='feeling'>understanding</a>
             <a href="{{url_for('search', feel='trust')}}" id='feeling'>trust</a>
             <a href="{{url_for('search', feel='faith')}}" id='feeling'>faith</a>
+            <a href="{{url_for('search', feel='hope')}}" id='feeling'>hope</a>
+            <a href="{{url_for('search', feel='freedom')}}" id='feeling'>freedom</a>
         </div>
-        <form action="{{url_for('search')}}" method='GET'>
-            <input type="text" class="input-box" name='feel' placeholder="search other verses" required>
-            <br>
-            <button type="submit" class="submit-btn">Go</button>
-        </form>
         <div>
         <p class='copyright'>©ESV Bible</p>
     </div>
+
     </div>
     <div class='functions'>
 
         
     </div>
 </div>
-
 </body>
 </html>

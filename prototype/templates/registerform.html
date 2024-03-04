@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="static/loginstyles.css">
+    <script src='static/script.js'></script>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+</style>
+</head>
+<body>
+<div>
+    <button onclick="goBack()" class="back-button">←</button>
+<div class='register_form'>
+    <p style='color:skyblue;'>sign up</p>
+    <form action='{{url_for("register")}}' method='POST'>
+    username: <br><input type="text" name="username" class='field' required placeholder="johnwick"><br>
+    email: <br><input type="email" name="email" class='field' required placeholder="johndoe@gmail.com"><br>
+    password: <br><input id="password" type="password" name="password" class='field' required placeholder="*******"> <br>
+    confirm password: <br><input id='confirm_password' type="password" name="confirm_password" class='field' required placeholder="*******" oninput='validate()'> <br>
+    <p id="validate-status"></p>
+    <button type="submit" class="submit-btn" id='submit-btn'>submit</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

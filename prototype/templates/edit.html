@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>edit post</title>
+	<link rel="stylesheet" type="text/css" href="../static/loginstyles.css">
+	<script src='../static/script.js'></script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+	</style>
+</head>
+<body>
+	<div>
+        <button onclick="goBack()" class="back-button">←</button>
+<div class="login_form">
+	<p style="color:skyblue;">edit post</p>
+    <form action="/edit/{{post_id}}/save-edit" method="POST">
+    	<span>date: {{date}}</span> <br>
+    	{% if feel == "" %}
+    	<span>emotion: </span><input class='field' type="text" name="feel" placeholder="..." style='color: white;'> <br>
+    	{% else %}
+    	<span>emotion: </span><input type="text" name="feel" value="{{feel}}" class='field' style='color: white;'> <br>
+    	{% endif %}
+    	{% if note == "" %}
+    	<span>note: </span><input type="text" name="note" placeholder="..." class='field' style='color: white;'> <br> <br>
+    	{% else %}
+    	<span>note: </span><input type="text" name="note" value="{{note}}" class='field' style='color: white;'> <br> <br>
+    	{% endif %}
+    	<button type="submit" class="submit-btn">save edit</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

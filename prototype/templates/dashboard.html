@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>account</title>
+	<link rel="stylesheet" type="text/css" href="static/styles.css">
+	<script src='static/script.js'></script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+	</style>
+</head>
+<body>
+	<button onclick="goBack()" class="back-button">←</button>
+	<div class='center-div'>
+		<p style='font-size: 20px;'>Hello, {{session['username']}}!</p>
+		<div>
+		<a class='func' href="{{url_for('journal')}}">journal</a> <br>
+		<a class='func' href="{{url_for('saved_verses')}}">saved verses</a> <br>
+		<a class='func' href="{{url_for('logout')}}">change username</a><br>
+		<a class='func' href="{{url_for('logout')}}">change email</a><br>
+		<a class='func' href="{{url_for('logout')}}">change password</a><br>
+		<a class='func' href="{{url_for('logout')}}">app settings</a> <br>
+		<a class='func' href="{{url_for('logout')}}">logout</a>
+		<br><br>
+		<a class='func' onclick="confirm()">delete account</a> <br>
+		<span id='confirm'>confirm deletion? <a href="{{url_for('delete_user')}}" class="func">yes</a> <a onclick="confirm()" class='func'>no</a></span>
+	</div>
+	</div>
+</body>
+</html>

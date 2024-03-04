@@ -7,8 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="static/styles.css">
 	<script src='static/script.js'></script>
 	<style>
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
-</style>
+		@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+	</style>
 
 </head>
 <body>
@@ -29,10 +29,18 @@
 		</div>
 		<div class='func-div'>
 			<p>save:</p>
-			<a href='{{url_for("save")}}' class='save'>↓</a>	
+			<a class='save' onclick='showSave()'>↓</a>
 		</div>
 		</div>
-
+		<div id='save_form'>
+			<form action='/save/{{feel}}/{{ref}}' method='POST'>
+            feel: <input type="text" class="input-box" name='feel' value="{{feel}}" placeholder={{feel}}> <br>
+            note: <input type="text" class="input-box" name='note' placeholder="enter note/thoughts...">
+            <br>
+            <button type="submit" class="submit-btn">save</button>
+        </form>
+        
+		</div>
 	</div>
 </div>
 </body>

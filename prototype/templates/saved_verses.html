@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Saved verses</title>
+	<link rel="stylesheet" type="text/css" href="static/styles.css">
+	<script src='static/script.js'></script>
+	<style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+</style>
+</head>
+<body>
+
+<a href="{{url_for('root')}}" class="back-button">←</a>
+	<br>
+	{% if msg is defined %}
+<p style='text-align: center; color:white; font-size:15px;'>{{msg}}</p>
+{% endif %}
+<br>
+<div>
+	{% for i in posts %}
+<p style='margin-left: 50px; margin-right: 10px;'>
+	{{i[0]}}: {{i[1]}}
+</p>
+{% endfor %}
+</div>
+</html>

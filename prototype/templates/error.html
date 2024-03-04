@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Copyright</title>
+	<link rel="stylesheet" type="text/css" href="static/styles.css">
+	<script src='static/script.js'></script>
+	<style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap')
+</style>
+</head>
+<body>
+<div class='center-div'>
+	{% if msg is defined %}
+	<p style="color:palevioletred;">{{msg}}</p>
+	{% endif %}
+	<p style="color:palevioletred;">Error!</p>
+	<br><br>
+	<a class='link' href="{{url_for('root')}}" style='color:lightgoldenrodyellow;'>Home page</a>
+
+
+</div>
+</html>
