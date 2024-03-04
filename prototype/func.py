@@ -1,7 +1,8 @@
 import random
 import requests
+
 #main functions
-API_KEY = 'yourkey'
+API_KEY = '1a07eb6942168a4236f35a488a4da3ca6dfcc72a'
 
 def get_esv_text(passage):
     API_URL = 'https://api.esv.org/v3/passage/text/'
@@ -20,6 +21,8 @@ def get_esv_text(passage):
     }
 
     response = requests.get(API_URL, params=params, headers=headers)
+    if len(response.json()['passages']) == 0:
+        return "404"
     passages = response.json()['passages'][0]
     prev_verse = response.json()['passage_meta'][0]['prev_verse']
     next_verse = response.json()['passage_meta'][0]['next_verse']
@@ -51,7 +54,7 @@ def get_random(query):
     }
 
     initial = requests.get(API_URL, params=params, headers=headers)
-    if len(initial.json()) == 0:
+    if len(initial.json()['results']) == 0:
         return "404"
     #get random page
     pages = initial.json()['total_pages']
@@ -71,7 +74,8 @@ def txttolist(file):
     lst = []
     for line in f:
         line = line.strip()
-        lst.append(line)
+        if line not in lst:
+            lst.append(line)
 
     f.close()
     return lst
