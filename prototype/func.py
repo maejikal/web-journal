@@ -2,7 +2,7 @@ import random
 import requests
 
 #main functions
-API_KEY = '1a07eb6942168a4236f35a488a4da3ca6dfcc72a'
+API_KEY = ''
 
 def get_esv_text(passage):
     API_URL = 'https://api.esv.org/v3/passage/text/'
